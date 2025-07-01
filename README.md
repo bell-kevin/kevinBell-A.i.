@@ -207,7 +207,9 @@ Once your quota issue is resolved, you should be able to run your server again w
 
 ## Deploying to Netlify
 
-You can host the contents of the `public/` folder on Netlify. The Express server (`server.js`) isn't deployable on Netlify without additional work, but the static files can be deployed easily. The instructions below assume you're using VS Code's terminal.
+You can host the contents of the `public/` folder on Netlify. The Express server (`server.js`) isn't deployable on Netlify without some extra steps because Netlify doesn't run long-lived Node servers. The static files are simple to deploy, but for the `/chat` endpoint you'll need to convert the logic into a **Netlify Function**. This repository now includes a function at `netlify/functions/chat.js` and a `netlify.toml` configuration so the backend can run on Netlify.
+
+If you clone this project, deploy it with the steps below. The front-end automatically uses the Netlify function when it's not running on `localhost`.
 
 1. **Install the Netlify CLI**
    ```bash
