@@ -32,7 +32,9 @@ app.post('/chat', async (req, res) => {
     res.json({ reply });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to get response from OpenAI' });
+    res
+      .status(500)
+      .json({ error: `Failed to get response from OpenAI: ${err.message}` });
   }
 });
 

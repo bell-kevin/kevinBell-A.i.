@@ -25,6 +25,7 @@ Even if you've never built a web application before, you can use this guide to r
 1. **Install Node.js**: You need Node.js (which comes with npm) installed on your computer.
    - Visit [nodejs.org](https://nodejs.org/) and download the "LTS" version for your operating system.
    - Follow the installer instructions. Once finished, open your terminal (Command Prompt on Windows, Terminal on macOS/Linux) and run `node --version` to make sure Node.js is installed correctly.
+   - This project expects **Node.js 20** or later, which is configured for Netlify via `.nvmrc` and `netlify.toml`.
 2. **A text editor**: Any code editor will work. Popular choices include [VS Code](https://code.visualstudio.com/), [Atom](https://atom.io/), or even a basic text editor.
 
 ## Installation
