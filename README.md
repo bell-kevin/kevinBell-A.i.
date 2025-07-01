@@ -156,6 +156,7 @@ RateLimitError: 429 You exceeded your current quota, please check your plan and 
   param: null,
   type: 'insufficient_quota'
 }
+```
 
 AI Chatbot
 You: weather layton utah
@@ -164,14 +165,14 @@ ChatGPT said:
 
 It seems like you are hitting the quota limit for your OpenAI API key, which is causing the RateLimitError with the message insufficient_quota. You'll need to check your plan and billing details on the OpenAI platform to resolve this issue. Here's what you can do:
 
-    Check your OpenAI account: Log in to OpenAI and go to the "Billing" section to confirm your usage and limits.
+Check your OpenAI account: Log in to OpenAI and go to the "Billing" section to confirm your usage and limits.
 
-    Upgrade your plan: If you’ve exceeded the free tier or your current usage limits, consider upgrading your plan to increase your quota.
+Upgrade your plan: If you’ve exceeded the free tier or your current usage limits, consider upgrading your plan to increase your quota.
 
-    Wait for the quota to reset: If you're on a limited plan, your quota may reset after a certain period (e.g., monthly).
+Wait for the quota to reset: If you're on a limited plan, your quota may reset after a certain period (e.g., monthly).
 
 Once your quota issue is resolved, you should be able to run your server again without hitting this error.
-```
+
 
 ## Project Structure
 ```
