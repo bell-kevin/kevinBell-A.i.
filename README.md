@@ -32,6 +32,32 @@ Even if you've never built a web application before, you can use this guide to r
    cd kevinBellai
    ```
    Replace `<repository-url>` with the URL of your fork or this repository.
+
+### If Git isn't recognized (Windows)
+If you try `git clone` and get an error like:
+
+```PowerShell
+PS C:\Users\Kevin Bell> git clone https://github.com/bell-kevin/kevinBellai
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git clone https://github.com/bell-kevin/kevinBellai
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+```
+
+then Git isn't installed (or isn't on your PATH). To fix this:
+1. Download the installer from [gitforwindows.org](https://gitforwindows.org/).
+2. Run it and choose the option that adds Git to your PATH.
+3. Open a new PowerShell window and check the installation:
+   ```PowerShell
+   git --version
+   ```
+   You should see the installed version number.
+4. Now try cloning again:
+   ```PowerShell
+   git clone https://github.com/bell-kevin/kevinBellai
+   ```
 2. **Install dependencies**
    ```bash
    npm install
