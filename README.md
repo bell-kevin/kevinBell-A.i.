@@ -1,3 +1,5 @@
+<a name="readme-top"></a>
+
 https://zesty-medovik-fa5b5c.netlify.app/
 
 # Beginner-Friendly Guide
@@ -266,3 +268,5 @@ Contributions are welcome! If you'd like to make improvements, please fork the r
 This project is licensed under the terms of the **GNU Affero General Public License v3.0**. See the `LICENSE` file for the full text.
 
 Enjoy experimenting with your chatbot!
+
+<p align="right"><a href="#readme-top">back to top</a></p>
