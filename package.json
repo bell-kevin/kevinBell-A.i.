@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
+    "build": "echo \"No specific build step required for this project. Static files are served directly from 'public/'.\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["ai", "chatbot", "openai", "express", "nodejs"],
