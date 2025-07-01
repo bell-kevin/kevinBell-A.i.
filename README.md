@@ -94,6 +94,35 @@ node server.js
 ```
 You should see a message like `Server running at http://localhost:3000`. Keep this terminal window open while you use the chatbot.
 
+### Running on a Home Server (Ubuntu 24.04 LTS)
+If you want the chatbot to stay online after closing your terminal, you can run it as a
+`systemd` service:
+
+1. **Create a service file** (for example, `/etc/systemd/system/chatbot.service`):
+   ```ini
+   [Unit]
+   Description=AI Chatbot
+   After=network.target
+
+   [Service]
+   WorkingDirectory=/path/to/kevinBellai
+   ExecStart=/usr/bin/node /path/to/kevinBellai/server.js
+   Restart=always
+   Environment=OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+   Replace `/path/to/kevinBellai` with the directory where you cloned this repository and
+   set your real API key.
+2. **Reload systemd and start the service**:
+   ```bash
+   sudo systemctl daemon-reload
+   sudo systemctl enable --now chatbot.service
+   ```
+   The server will now run in the background and automatically start on boot. Check its
+   status with `sudo systemctl status chatbot.service`.
+
 ## Using the Chatbot
 1. Open your web browser and navigate to `http://localhost:3000`.
 2. Type a message in the text box and click **Send**.
