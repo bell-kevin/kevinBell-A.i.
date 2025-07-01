@@ -78,6 +78,13 @@ If you don't want to use a `.env` file, you can also set `OPENAI_API_KEY` direct
 ```bash
 export OPENAI_API_KEY=YOUR_OPENAI_API_KEY   # on macOS/Linux
 set OPENAI_API_KEY=YOUR_OPENAI_API_KEY      # on Windows CMD
+$env:OPENAI_API_KEY="YOUR_OPENAI_API_KEY"   # on Windows PowerShell
+```
+
+If you're using PowerShell, you can confirm that the variable is set by running:
+
+```PowerShell
+echo $env:OPENAI_API_KEY
 ```
 
 ## Running the Server
@@ -103,7 +110,7 @@ it means Node can't find your API key. Create a `.env` file with:
 ```env
 OPENAI_API_KEY=YOUR_OPENAI_API_KEY
 ```
-or set the variable directly in your terminal, then restart the server.
+or set the variable directly in your terminal, then restart the server. On Windows PowerShell, you can verify the variable with `echo $env:OPENAI_API_KEY` and set it using `$env:OPENAI_API_KEY="YOUR_OPENAI_API_KEY"`.
 
 ## Project Structure
 ```
