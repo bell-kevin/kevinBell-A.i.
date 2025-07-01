@@ -1,3 +1,5 @@
+https://zesty-medovik-fa5b5c.netlify.app/
+
 # Beginner-Friendly Guide
 
 Welcome to this simple AI chatbot project! This repository contains a small web application that lets you talk to OpenAI's models. The goal of this guide is to help absolute beginners set up the project and understand how it works.
