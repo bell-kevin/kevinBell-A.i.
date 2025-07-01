@@ -112,6 +112,67 @@ OPENAI_API_KEY=YOUR_OPENAI_API_KEY
 ```
 or set the variable directly in your terminal, then restart the server. On Windows PowerShell, you can verify the variable with `echo $env:OPENAI_API_KEY` and set it using `$env:OPENAI_API_KEY="YOUR_OPENAI_API_KEY"`.
 
+### Example PowerShell Session
+Below is an example PowerShell transcript showing the environment variable being
+set, the server starting, and the resulting quota error when the API key's
+usage limit has been exceeded:
+
+```PowerShell
+PS C:\Users\Kevin Bell\kevinBellai> $env:OPENAI_API_KEY="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"
+PS C:\Users\Kevin Bell\kevinBellai> echo $env:OPENAI_API_KEY
+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
+PS C:\Users\Kevin Bell\kevinBellai> node server.js
+Server running at http://localhost:3000
+RateLimitError: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+    at APIError.generate (C:\Users\Kevin Bell\kevinBellai\node_modules\openai\core\error.js:63:20)
+    at OpenAI.makeStatusError (C:\Users\Kevin Bell\kevinBellai\node_modules\openai\client.js:158:32)
+    at OpenAI.makeRequest (C:\Users\Kevin Bell\kevinBellai\node_modules\openai\client.js:301:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\Kevin Bell\kevinBellai\server.js:23:24 {
+  status: 429,
+  headers: Headers {
+    date: 'Tue, 01 Jul 2025 18:10:42 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '337',
+    connection: 'keep-alive',
+    vary: 'Origin',
+    'x-request-id': 'req_2ffdf96f6a538b2edd4cc133c5854696',
+    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=GHwEud4fYyI9EbCnit7xiT_FjYeEwSJGFMY8V_OGADk-1751393442-1.0.1.1-25KRGN2mGhZAgHupqFcDLkAMMVMr8nRHZE.vmlNQdV1ikwNAy6Iy5HdqXYqOTJkF0w5SivgjQw.e8IxsLoG6hyAVO29JdVgxh6s7s4hQmpU; path=/; expires=Tue, 01-Jul-25 18:40:42 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None, _cfuvid=UyFyppLzA0BLCxMQa_Y0.D92R8TeH2NjByi.T9wqEcA-1751393442685-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+    'x-content-type-options': 'nosniff',
+    server: 'cloudflare',
+    'cf-ray': '9587dc95d9cee888-SLC',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  requestID: 'req_2ffdf96f6a538b2edd4cc133c5854696',
+  error: {
+    message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+    type: 'insufficient_quota',
+    param: null,
+    code: 'insufficient_quota'
+  },
+  code: 'insufficient_quota',
+  param: null,
+  type: 'insufficient_quota'
+}
+
+AI Chatbot
+You: weather layton utah
+Error: Failed to get response from OpenAI
+ChatGPT said:
+
+It seems like you are hitting the quota limit for your OpenAI API key, which is causing the RateLimitError with the message insufficient_quota. You'll need to check your plan and billing details on the OpenAI platform to resolve this issue. Here's what you can do:
+
+    Check your OpenAI account: Log in to OpenAI and go to the "Billing" section to confirm your usage and limits.
+
+    Upgrade your plan: If you’ve exceeded the free tier or your current usage limits, consider upgrading your plan to increase your quota.
+
+    Wait for the quota to reset: If you're on a limited plan, your quota may reset after a certain period (e.g., monthly).
+
+Once your quota issue is resolved, you should be able to run your server again without hitting this error.
+```
+
 ## Project Structure
 ```
 kevinBellai/
