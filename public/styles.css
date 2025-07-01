@@ -37,6 +37,10 @@
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Layout heights */
+  --header-height: 4.5rem;
+  --input-section-height: 8rem;
 }
 
 [data-theme="dark"] {
@@ -69,6 +73,7 @@ body {
   line-height: 1.6;
   transition: var(--transition);
   overflow-x: hidden;
+  height: 100vh;
 }
 
 .app-container {
@@ -76,6 +81,7 @@ body {
   flex-direction: column;
   height: 100vh;
   max-width: 100vw;
+  overflow: hidden;
 }
 
 /* Header Styles */
@@ -87,6 +93,8 @@ body {
   top: 0;
   z-index: 100;
   transition: var(--transition);
+  height: var(--header-height);
+  flex-shrink: 0;
 }
 
 .header-content {
@@ -97,6 +105,7 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  height: 100%;
 }
 
 .logo {
@@ -159,6 +168,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  height: calc(100vh - var(--header-height));
 }
 
 .chat-container {
@@ -169,6 +179,7 @@ body {
   margin: 0 auto;
   width: 100%;
   overflow: hidden;
+  height: 100%;
 }
 
 /* Welcome Section */
@@ -180,11 +191,15 @@ body {
   padding: 2rem;
   opacity: 1;
   transition: var(--transition-slow);
+  height: calc(100vh - var(--header-height) - var(--input-section-height));
+  overflow-y: auto;
 }
 
 .welcome-section.hidden {
   opacity: 0;
   pointer-events: none;
+  position: absolute;
+  visibility: hidden;
 }
 
 .welcome-content {
@@ -257,10 +272,13 @@ body {
   overflow-y: auto;
   padding: 1.5rem;
   display: none;
+  height: calc(100vh - var(--header-height) - var(--input-section-height));
+  min-height: 0;
 }
 
 .messages-container.visible {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .messages {
@@ -270,6 +288,8 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
+  flex: 1;
+  padding-bottom: 1rem;
 }
 
 .message {
@@ -407,6 +427,10 @@ body {
   background: var(--bg-primary);
   border-top: 1px solid var(--border-color);
   padding: 1.5rem;
+  flex-shrink: 0;
+  height: var(--input-section-height);
+  display: flex;
+  align-items: center;
 }
 
 .input-container {
@@ -442,7 +466,7 @@ body {
   line-height: 1.5;
   resize: none;
   min-height: 1.5rem;
-  max-height: 8rem;
+  max-height: 4rem;
   font-family: inherit;
 }
 
@@ -628,6 +652,11 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  :root {
+    --header-height: 4rem;
+    --input-section-height: 7rem;
+  }
+  
   .header-content {
     padding: 1rem;
   }
@@ -682,6 +711,11 @@ body {
 }
 
 @media (max-width: 480px) {
+  :root {
+    --header-height: 3.5rem;
+    --input-section-height: 6.5rem;
+  }
+  
   .welcome-content {
     padding: 0 1rem;
   }
