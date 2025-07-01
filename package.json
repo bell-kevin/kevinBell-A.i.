@@ -1,14 +1,16 @@
 {
   "name": "kevinbellai",
   "version": "1.0.0",
-  "description": "<a name=\"readme-top\"></a>",
-  "main": "index.js",
+  "description": "Professional AI Chatbot with Modern UI",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["ai", "chatbot", "openai", "express", "nodejs"],
+  "author": "Kevin Bell",
+  "license": "AGPL-3.0",
   "type": "commonjs",
   "dependencies": {
     "express": "^5.1.0",
