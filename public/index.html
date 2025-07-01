@@ -3,54 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Chatbot</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; }
-    #chat { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: auto; }
-    .message { margin: 5px 0; }
-    .user { font-weight: bold; }
-    .bot { color: green; }
-  </style>
+  <title>AI Assistant - Professional Chatbot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>AI Chatbot</h1>
-  <div id="chat"></div>
-  <input id="input" type="text" placeholder="Type your message" style="width:100%;" />
-  <button id="send">Send</button>
-<script>
-const chatDiv = document.getElementById('chat');
-const input = document.getElementById('input');
-const sendBtn = document.getElementById('send');
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h1 class="logo-text">AI Assistant</h1>
+        </div>
+        <div class="header-actions">
+          <button class="btn-icon" id="themeToggle" title="Toggle theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="btn-icon" id="clearChat" title="Clear conversation">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </header>
 
-function appendMessage(text, cls) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  div.className = 'message ' + cls;
-  chatDiv.appendChild(div);
-  chatDiv.scrollTop = chatDiv.scrollHeight;
-}
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="chat-container">
+        <!-- Welcome Message -->
+        <div class="welcome-section" id="welcomeSection">
+          <div class="welcome-content">
+            <div class="welcome-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h2 class="welcome-title">Welcome to AI Assistant</h2>
+            <p class="welcome-subtitle">I'm here to help you with any questions or tasks. Start a conversation below!</p>
+            <div class="suggestion-chips">
+              <button class="chip" data-message="What can you help me with?">
+                <i class="fas fa-question-circle"></i>
+                What can you help me with?
+              </button>
+              <button class="chip" data-message="Tell me a fun fact">
+                <i class="fas fa-lightbulb"></i>
+                Tell me a fun fact
+              </button>
+              <button class="chip" data-message="Help me write an email">
+                <i class="fas fa-envelope"></i>
+                Help me write an email
+              </button>
+            </div>
+          </div>
+        </div>
 
-sendBtn.onclick = async () => {
-  const text = input.value.trim();
-  if (!text) return;
-  appendMessage('You: ' + text, 'user');
-  input.value = '';
-  try {
-    const res = await fetch('/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text })
-    });
-    const data = await res.json();
-    if (data.reply) {
-      appendMessage('Bot: ' + data.reply, 'bot');
-    } else {
-      appendMessage('Error: ' + data.error, 'bot');
-    }
-  } catch(err) {
-    appendMessage('Error communicating with server', 'bot');
-  }
-};
-</script>
+        <!-- Chat Messages -->
+        <div class="messages-container" id="messagesContainer">
+          <div class="messages" id="messages"></div>
+        </div>
+      </div>
+
+      <!-- Input Section -->
+      <div class="input-section">
+        <div class="input-container">
+          <div class="input-wrapper">
+            <textarea 
+              id="messageInput" 
+              placeholder="Type your message here..." 
+              rows="1"
+              maxlength="2000"
+            ></textarea>
+            <div class="input-actions">
+              <button class="btn-icon" id="attachBtn" title="Attach file" disabled>
+                <i class="fas fa-paperclip"></i>
+              </button>
+              <button class="btn-send" id="sendBtn" disabled>
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+          <div class="input-footer">
+            <span class="character-count" id="charCount">0/2000</span>
+            <span class="powered-by">Powered by OpenAI</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>AI is thinking...</p>
+      </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
