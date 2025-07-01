@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chatbot</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; }
+    #chat { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: auto; }
+    .message { margin: 5px 0; }
+    .user { font-weight: bold; }
+    .bot { color: green; }
+  </style>
+</head>
+<body>
+  <h1>AI Chatbot</h1>
+  <div id="chat"></div>
+  <input id="input" type="text" placeholder="Type your message" style="width:100%;" />
+  <button id="send">Send</button>
+<script>
+const chatDiv = document.getElementById('chat');
+const input = document.getElementById('input');
+const sendBtn = document.getElementById('send');
+
+function appendMessage(text, cls) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  div.className = 'message ' + cls;
+  chatDiv.appendChild(div);
+  chatDiv.scrollTop = chatDiv.scrollHeight;
+}
+
+sendBtn.onclick = async () => {
+  const text = input.value.trim();
+  if (!text) return;
+  appendMessage('You: ' + text, 'user');
+  input.value = '';
+  try {
+    const res = await fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text })
+    });
+    const data = await res.json();
+    if (data.reply) {
+      appendMessage('Bot: ' + data.reply, 'bot');
+    } else {
+      appendMessage('Error: ' + data.error, 'bot');
+    }
+  } catch(err) {
+    appendMessage('Error communicating with server', 'bot');
+  }
+};
+</script>
+</body>
+</html>
