@@ -205,6 +205,36 @@ Wait for the quota to reset: If you're on a limited plan, your quota may reset a
 
 Once your quota issue is resolved, you should be able to run your server again without hitting this error.
 
+## Deploying to Netlify
+
+You can host the contents of the `public/` folder on Netlify. The Express server (`server.js`) isn't deployable on Netlify without additional work, but the static files can be deployed easily. The instructions below assume you're using VS Code's terminal.
+
+1. **Install the Netlify CLI**
+   ```bash
+   npm install -g netlify-cli
+   ```
+   If you prefer not to install globally, run commands with `npx netlify` instead.
+
+2. **Log in to Netlify**
+   ```bash
+   netlify login
+   ```
+   This opens a browser window for authentication.
+
+3. **Build the project** (optional)
+   ```bash
+   npm run build
+   ```
+   The build step just prints a message because the site is served from `public/`.
+
+4. **Deploy**
+   ```bash
+   netlify deploy --dir=public        # preview
+   netlify deploy --dir=public --prod # production
+   ```
+
+If you get a "no such file or directory" error, make sure you're running the command from the project root and that the `public/` folder exists.
+
 
 ## Project Structure
 ```
