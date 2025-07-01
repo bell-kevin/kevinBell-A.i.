@@ -94,6 +94,17 @@ You should see a message like `Server running at http://localhost:3000`. Keep th
 
 If something goes wrong, check the terminal where you started the server for error messages.
 
+### If `OPENAI_API_KEY` is missing
+If you run `node server.js` and see an error like:
+```bash
+OpenAIError: The OPENAI_API_KEY environment variable is missing or empty
+```
+it means Node can't find your API key. Create a `.env` file with:
+```env
+OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+```
+or set the variable directly in your terminal, then restart the server.
+
 ## Project Structure
 ```
 kevinBellai/
