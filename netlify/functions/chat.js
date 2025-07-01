@@ -37,6 +37,11 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: JSON.stringify({ reply }) };
   } catch (err) {
     console.error(err);
-    return { statusCode: 500, body: JSON.stringify({ error: 'Failed to get response from OpenAI' }) };
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: `Failed to get response from OpenAI: ${err.message}`,
+      }),
+    };
   }
 };
