@@ -92,6 +92,18 @@ If you're using PowerShell, you can confirm that the variable is set by running:
 echo $env:OPENAI_API_KEY
 ```
 
+## Email Notifications
+To receive an email whenever someone sends a message to the chatbot, configure
+SMTP settings in your `.env` file:
+```env
+SMTP_HOST=your.mailserver.com
+SMTP_PORT=587
+SMTP_USER=your_username
+SMTP_PASS=your_password
+SMTP_FROM=bot@example.com   # optional
+```
+Emails will be sent to `bellKevin@pm.me` with the user's message.
+
 ## Running the Server
 After installing the dependencies and setting your key, start the server with:
 ```bash
