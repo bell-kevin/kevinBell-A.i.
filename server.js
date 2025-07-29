@@ -20,9 +20,17 @@ if (!process.env.OPENAI_API_KEY) {
   console.error('You can get an API key from: https://platform.openai.com/api-keys');
 }
 
-const openai = process.env.OPENAI_API_KEY ? new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-}) : null;
+// Initialize OpenAI client only when needed to prevent startup errors
+let openai = null;
+if (process.env.OPENAI_API_KEY) {
+  try {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  } catch (error) {
+    console.error('Failed to initialize OpenAI client:', error.message);
+  }
+}
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -62,7 +70,7 @@ app.post('/chat', async (req, res) => {
     return res.status(400).json({ error: 'message field required' });
   }
   sendEmailNotification(userMessage);
-  if (!process.env.OPENAI_API_KEY) {
+  if (!openai) {
     return res.status(500).json({ error: 'OPENAI_API_KEY is not configured. Please add your OpenAI API key to the .env file.' });
   }
   try {
