@@ -6,6 +6,21 @@ const nodemailer = require('nodemailer');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Check if OPENAI_API_KEY is provided
+if (!process.env.OPENAI_API_KEY) {
+  console.error('❌ ERROR: OPENAI_API_KEY environment variable is missing!');
+  console.error('');
+  console.error('To fix this issue:');
+  console.error('1. Create a .env file in the project root directory');
+  console.error('2. Add the following line to the .env file:');
+  console.error('   OPENAI_API_KEY=your_actual_openai_api_key_here');
+  console.error('3. Replace "your_actual_openai_api_key_here" with your real OpenAI API key');
+  console.error('4. Restart the server');
+  console.error('');
+  console.error('You can get an API key from: https://platform.openai.com/api-keys');
+  process.exit(1);
+}
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
