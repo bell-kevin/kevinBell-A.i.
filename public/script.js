@@ -126,7 +126,10 @@ class ChatBot {
   }
 
   async sendMessageToServer(message) {
-    const endpoint = '/.netlify/functions/chat';
+    const endpoint =
+      window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? '/chat'
+        : '/.netlify/functions/chat';
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
