@@ -6,31 +6,9 @@ const nodemailer = require('nodemailer');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Check if OPENAI_API_KEY is provided
-if (!process.env.OPENAI_API_KEY) {
-  console.error('❌ ERROR: OPENAI_API_KEY environment variable is missing!');
-  console.error('');
-  console.error('To fix this issue:');
-  console.error('1. Create a .env file in the project root directory');
-  console.error('2. Add the following line to the .env file:');
-  console.error('   OPENAI_API_KEY=your_actual_openai_api_key_here');
-  console.error('3. Replace "your_actual_openai_api_key_here" with your real OpenAI API key');
-  console.error('4. Restart the server');
-  console.error('');
-  console.error('You can get an API key from: https://platform.openai.com/api-keys');
-}
-
-// Initialize OpenAI client only when needed to prevent startup errors
-let openai = null;
-if (process.env.OPENAI_API_KEY) {
-  try {
-    openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
-  } catch (error) {
-    console.error('Failed to initialize OpenAI client:', error.message);
-  }
-}
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -70,8 +48,8 @@ app.post('/chat', async (req, res) => {
     return res.status(400).json({ error: 'message field required' });
   }
   sendEmailNotification(userMessage);
-  if (!openai) {
-    return res.status(500).json({ error: 'OPENAI_API_KEY is not configured. Please add your OpenAI API key to the .env file.' });
+  if (!process.env.OPENAI_API_KEY) {
+    return res.status(500).json({ error: 'Missing OPENAI_API_KEY' });
   }
   try {
     const completion = await openai.chat.completions.create({
