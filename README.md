@@ -168,7 +168,6 @@ usage limit has been exceeded:
 ```PowerShell
 PS C:\Users\Kevin Bell\kevinBellai> $env:OPENAI_API_KEY="put_your_key_here"
 PS C:\Users\Kevin Bell\kevinBellai> echo $env:OPENAI_API_KEY
-REDACTED_OPENAI_API_KEY
 PS C:\Users\Kevin Bell\kevinBellai> node server.js
 Server running at http://localhost:3000
 RateLimitError: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
