@@ -166,7 +166,7 @@ set, the server starting, and the resulting quota error when the API key's
 usage limit has been exceeded:
 
 ```PowerShell
-PS C:\Users\Kevin Bell\kevinBellai> $env:OPENAI_API_KEY="REDACTED_OPENAI_API_KEY"
+PS C:\Users\Kevin Bell\kevinBellai> $env:OPENAI_API_KEY="put_your_key_here"
 PS C:\Users\Kevin Bell\kevinBellai> echo $env:OPENAI_API_KEY
 REDACTED_OPENAI_API_KEY
 PS C:\Users\Kevin Bell\kevinBellai> node server.js
