@@ -22,7 +22,7 @@
   "dependencies": {
     "dotenv": "^18.0.5",
     "express": "^5.2.1",
-    "nodemailer": "^10.0.14",
+    "nodemailer": "^10.0.15",
     "openai": "^7.28.0"
   }
 }
